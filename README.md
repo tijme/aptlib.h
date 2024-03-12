@@ -10,9 +10,9 @@
     <br/>
 </p>
 
-## Description
+## Background
 
-ToDo
+Whilst developing exploits and malware, I often encountered code redundancy throughout these projects. Functionality such as retrieving user information, querying processes and working with static offsets. And thus, `aptlib.h` was born. A high cohesion & low coupling c-code library that can be easily integrated in any c-code project through a Git submodule. Whether you're developing malware, exploits, or something else; `aptlib.h` helps you stay one step ahead of APT's.
 
 ## Usage
 
