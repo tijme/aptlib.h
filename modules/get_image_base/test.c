@@ -35,17 +35,9 @@
 #include <stdio.h>
 
 /**
- * Strings.
- * 
- * Defines one variable type, one macro, and various functions for manipulating arrays of characters.
- * https://www.tutorialspoint.com/c_standard_library/string_h.htm
- */
-#include <string.h>
-
-/**
  * Include custom header files.
  */
-#include "inc/string_contains.h"
+#include "inc/get_image_base.h"
 
 /**
  * Default defines
@@ -65,47 +57,10 @@ int main(int argc, char** argv, char **envp) {
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
 
-    puts("[+] Starting checks for module `string_contains`.");
+    puts("[+] Starting checks for module `get_image_base`.");
 
-    char* needle = "test";
-    char* needleCapital = "Test";
-    char* haystack = "This is a test message!";
+    printf("[+] Image base of `ntoskrnl.exe`: 0x%X\n", getImageBase("ntoskrnl.exe"));
 
-    // Case sensitive; contains
-    if (stringContains(haystack, needle, true)) {
-        puts("[+] CHECK1: Succesfully completed.");
-    } else {
-        puts("[!] CHECK1: Failed to perform 'string contains' operation.");
-    }
-
-    // Case sensitive; does not contain
-    if (stringContains(needle, haystack, true)) {
-        puts("[!] CHECK2: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK2: Succesfully completed.");
-    }
-
-    // Case sensitive; contains but cased
-    if (stringContains(haystack, needleCapital, true)) {
-        puts("[!] CHECK3: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK3: Succesfully completed.");
-    }
-
-    // Case insensitive; contains
-    if (stringContains(haystack, needleCapital, false)) {
-        puts("[+] CHECK4: Succesfully completed.");
-    } else {
-        puts("[!] CHECK4: Failed to perform 'string contains' operation.");
-    }
-
-    // Case insensitive; does not contain
-    if (stringContains(needleCapital, haystack, false)) {
-        puts("[!] CHECK5: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK5: Succesfully completed.");
-    }
-
-    puts("[+] Finished checks for module `string_contains`.");
+    puts("[+] Finished checks for module `get_image_base`.");
 }
 

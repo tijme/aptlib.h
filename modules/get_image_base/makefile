@@ -1,20 +1,18 @@
 # Defines
 COMPILER := x86_64-w64-mingw32-gcc
-INCLUDES := ./src/print_error.c
+INCLUDES := ./src/get_image_base.c
 
 # Compile, test and clean
 all: program test
 
 # Compile `test.c`
 program:
-	echo TODO
-# 	$(COMPILER) -masm=intel -c $(INCLUDES) -o print_error.o
-# 	$(COMPILER) -masm=intel print_error.o ./test.c -o test.exe
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o get_image_base.o
+	$(COMPILER) -masm=intel get_image_base.o ./test.c -o test.exe -lntdll
 
 # Test `test.exe`
 test:
-	echo TODO
-# 	WINEDEBUG="fixme-all" wine ./test.exe
+	WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:

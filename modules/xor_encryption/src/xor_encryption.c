@@ -27,40 +27,35 @@
  */
 
 /**
- * Standard Input Output.
+ * Standard Library.
  * 
- * Defines three variable types, several macros, and various functions for performing input and output.
- * https://www.tutorialspoint.com/c_standard_library/stdio_h.htm
+ * Defines four variable types, several macros, and various functions for performing general functions.
+ * https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm
  */
-#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * Include custom header files.
+ * Local includes
  */
-#include "inc/print_error.h"
+#include "../inc/xor_encryption.h"
 
-/**
- * Default defines
+/** 
+ * Run bitwise XOR on text using password.
+ *  * 
+ * @param char* plainv The plaintext value.
+ * @param char* passwv The passord value.
+ * @param int length The length of the plaintext and password (must be equal).
+ * @return char* The XOR'd result including a null byte.
  */
-#ifndef UNREFERENCED_PARAMETER
-#define UNREFERENCED_PARAMETER(parameter) (parameter)
-#endif
+char* xorcrypt(char* plainv, size_t plainc, char* passwv, size_t passwc, char* title) {
+	char* result = malloc(plainc + 1);
+	size_t i;
 
-/**
- * Test the current module.
- *
- * @param int argc Amount of arguments in `argv`.
- * @param char** argv Array of arguments passed to the program.
- * @param char** envp Array of environent key=value char arrays.
- */
-int main(int argc, char** argv, char **envp) {
-    UNREFERENCED_PARAMETER(argc);
-    UNREFERENCED_PARAMETER(argv);
+	for(i = 0; i < plainc; i ++) {
+		result[i] = plainv[i] ^ passwv[i % passwc];
+	}
 
-    puts("[+] Starting checks for module `print_error`.");
+	result[i] = 0;
 
-    PrintMessageFromError(0xC026233F);
-
-    puts("[+] Finished checks for module `print_error`.");
+	return result;
 }
-

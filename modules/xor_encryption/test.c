@@ -45,7 +45,7 @@
 /**
  * Include custom header files.
  */
-#include "inc/string_contains.h"
+#include "inc/xor_encryption.h"
 
 /**
  * Default defines
@@ -65,47 +65,28 @@ int main(int argc, char** argv, char **envp) {
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
 
-    puts("[+] Starting checks for module `string_contains`.");
+    puts("[+] Starting checks for module `xor_encryption`.");
 
-    char* needle = "test";
-    char* needleCapital = "Test";
-    char* haystack = "This is a test message!";
+    char* plainv = "Hello world!";
+    size_t plainc = strlen(plainv);
 
-    // Case sensitive; contains
-    if (stringContains(haystack, needle, true)) {
-        puts("[+] CHECK1: Succesfully completed.");
-    } else {
-        puts("[!] CHECK1: Failed to perform 'string contains' operation.");
-    }
+    printf("[+] Plaintext (%zu): %s\n", plainc, plainv);
 
-    // Case sensitive; does not contain
-    if (stringContains(needle, haystack, true)) {
-        puts("[!] CHECK2: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK2: Succesfully completed.");
-    }
+    char* passwv = "password";
+    size_t passwc = strlen(passwv);
 
-    // Case sensitive; contains but cased
-    if (stringContains(haystack, needleCapital, true)) {
-        puts("[!] CHECK3: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK3: Succesfully completed.");
-    }
+    printf("[+] Password (%zu): %s\n", passwc, passwv);
 
-    // Case insensitive; contains
-    if (stringContains(haystack, needleCapital, false)) {
-        puts("[+] CHECK4: Succesfully completed.");
-    } else {
-        puts("[!] CHECK4: Failed to perform 'string contains' operation.");
-    }
+    char* cipherv = xorcrypt(plainv, plainc, passwv, passwc, "Encrypt");
+    size_t cipherc = plainc;
 
-    // Case insensitive; does not contain
-    if (stringContains(needleCapital, haystack, false)) {
-        puts("[!] CHECK5: Failed to perform 'string contains' operation.");
-    } else {
-        puts("[+] CHECK5: Succesfully completed.");
-    }
+    printf("[+] Cipher (%zu): [non-ascii]\n", plainc);
 
-    puts("[+] Finished checks for module `string_contains`.");
+    char* decryptv = xorcrypt(cipherv, plainc, passwv, passwc, "Decrypt");
+    size_t decryptc = strlen(decryptv);
+
+    printf("[+] Decrypted (%zu): %s\n", decryptc, decryptv);
+
+    puts("[+] Finished checks for module `xor_encryption`.");
 }
 

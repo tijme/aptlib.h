@@ -1,14 +1,14 @@
 # Defines
 COMPILER := x86_64-w64-mingw32-gcc
-INCLUDES := ./src/xor_encryption.c
+INCLUDES := ./src/find_process_id.c
 
 # Compile, test and clean
 all: program test
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
-	$(COMPILER) -masm=intel xor_encryption.o ./test.c -o test.exe
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o find_process_id_by_process_name.o
+	$(COMPILER) -masm=intel find_process_id_by_process_name.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:

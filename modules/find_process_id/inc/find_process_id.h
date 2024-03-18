@@ -37,6 +37,16 @@
 #pragma warning(disable :5045)
 
 /**
+ * Windows API.
+ * 
+ * Contains declarations for all of the functions, macro's & data types in the Windows API.
+ * Define 'WIN32_LEAN_AND_MEAN' to make sure windows.h compiles without warnings.
+ * https://docs.microsoft.com/en-us/previous-versions//aa383749(v=vs.85)?redirectedfrom=MSDN
+ */
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+/**
  * Booleans.
  * 
  * Defines boolean types.
@@ -45,29 +55,10 @@
 #include <stdbool.h>
 
 /**
- * Check if the given needle is present in the given haystack (case sensitive).
+ * Find a process ID by process name.
  * 
- * @param char* haystack The haystack to search in.
- * @param char* needle The needle to search for.
- * @param bool Positive if the needle was found in the haystack.
+ * @param char* processName The name of the process to search for.
+ * @param DWORD* processID Output parameter for the ID of the process.
+ * @return bool Positive if PID was found succesfully.
  */
-bool stringContainsCS(char* haystack, char* needle);
-
-/**
- * Check if the given needle is present in the given haystack (case insensitive).
- * 
- * @param char* haystack The haystack to search in.
- * @param char* needle The needle to search for.
- * @param bool Positive if the needle was found in the haystack.
- */
-bool stringContainsCI(char* haystack, char* needle);
-
-/**
- * Check if the given needle is present in the given haystack.
- * 
- * @param char* haystack The haystack to search in.
- * @param char* needle The needle to search for.
- * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the needle was found in the haystack.
- */
-bool stringContains(char* haystack, char* needle, bool caseSensitive);
+bool FindProcessIDByProcessName(char* processName, DWORD* processID);

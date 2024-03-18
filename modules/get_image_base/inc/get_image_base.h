@@ -27,40 +27,42 @@
  */
 
 /**
- * Standard Input Output.
+ * Windows API.
  * 
- * Defines three variable types, several macros, and various functions for performing input and output.
- * https://www.tutorialspoint.com/c_standard_library/stdio_h.htm
+ * Contains declarations for all of the functions, macro's & data types in the Windows API.
+ * Define 'WIN32_LEAN_AND_MEAN' to make sure windows.h compiles without warnings.
+ * https://docs.microsoft.com/en-us/previous-versions//aa383749(v=vs.85)?redirectedfrom=MSDN
  */
-#include <stdio.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 /**
- * Include custom header files.
+ * Predefined definitions
  */
-#include "inc/print_error.h"
+#define STATUS_INFO_LENGTH_MISMATCH             0xC0000004   // Possible return status of API
+#define SystemModuleInformation                 0x0B         // Type of system information to retrieve
+
+typedef struct _RTL_PROCESS_MODULE_INFORMATION {
+    HANDLE Section;
+    PVOID MappedBase;
+    PVOID ImageBase;
+    ULONG ImageSize;
+    ULONG Flags;
+    USHORT LoadOrderIndex;
+    USHORT InitOrderIndex;
+    USHORT LoadCount;
+    USHORT OffsetToFileName;
+    UCHAR FullPathName[256];
+} RTL_PROCESS_MODULE_INFORMATION, *PRTL_PROCESS_MODULE_INFORMATION;
+
+typedef struct _RTL_PROCESS_MODULES {
+    ULONG NumberOfModules;
+    RTL_PROCESS_MODULE_INFORMATION Modules[1];
+} RTL_PROCESS_MODULES, *PRTL_PROCESS_MODULES;
 
 /**
- * Default defines
+ * Get the virtual address base from the given image.
+ * 
+ * @return LPVOID A pointer to the image base in the system space.
  */
-#ifndef UNREFERENCED_PARAMETER
-#define UNREFERENCED_PARAMETER(parameter) (parameter)
-#endif
-
-/**
- * Test the current module.
- *
- * @param int argc Amount of arguments in `argv`.
- * @param char** argv Array of arguments passed to the program.
- * @param char** envp Array of environent key=value char arrays.
- */
-int main(int argc, char** argv, char **envp) {
-    UNREFERENCED_PARAMETER(argc);
-    UNREFERENCED_PARAMETER(argv);
-
-    puts("[+] Starting checks for module `print_error`.");
-
-    PrintMessageFromError(0xC026233F);
-
-    puts("[+] Finished checks for module `print_error`.");
-}
-
+LPVOID getImageBase(LPCSTR imageName);

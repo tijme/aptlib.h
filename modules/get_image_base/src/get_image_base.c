@@ -27,24 +27,6 @@
  */
 
 /**
- * Only include this header file once.
- */
-#pragma once
-
-/**
- * Disable the Spectre warning (MSVC C5045). Otherwise we cannot access arrays with unsafe indexes.
- */
-#pragma warning(disable :5045)
-
-/**
- * Standard Input Output.
- * 
- * Defines three variable types, several macros, and various functions for performing input and output.
- * https://www.tutorialspoint.com/c_standard_library/stdio_h.htm
- */
-#include <stdio.h>
-
-/**
  * Windows API.
  * 
  * Contains declarations for all of the functions, macro's & data types in the Windows API.
@@ -55,32 +37,51 @@
 #include <windows.h>
 
 /**
- * Retrieve a human-readable string describing the given error code.
+ * Internal NT API's and data structures.
  * 
- * @param DWORD errorCode The error code to convert.
- * @param char* The human-readable output buffer.
- * @param DWORD The size of the output buffer.
- * @returns DWORD The amount of bytes actually written.
+ * Helper library that contains NT API's and data structures for system services, security and identity.
+ * https://docs.microsoft.com/en-us/windows/win32/api/winternl/
  */
-DWORD GetMessageFromError(DWORD errorCode, char* lpBuffer, DWORD size);
+#include <winternl.h>
 
 /**
- * Retrieve a human-readable string describing the last error code.
- * 
- * @param char* The human-readable output buffer.
- * @param DWORD The size of the output buffer.
- * @returns DWORD The amount of bytes actually written.
+ * Local includes
  */
-DWORD GetMessageFromLastError(char* lpBuffer, DWORD size);
+#include "../inc/get_image_base.h"
 
 /**
- * Print a human-readable string, describing the given error code, to the console.
+ * Get the virtual address base from the given image.
  * 
- * @param DWORD errorCode The error code to print a message for.
+ * @return LPVOID A pointer to the image base in the system space.
  */
-void PrintMessageFromError(DWORD errorCode);
+LPVOID getImageBase(LPCSTR imageName) {
+    DWORD dwSize = 0;
 
-/**
- * Print a human-readable string, describing the last error code, to the console.
- */
-void PrintMessageFromLastError();
+    if (NtQuerySystemInformation(SystemModuleInformation, NULL, dwSize, &dwSize) != STATUS_INFO_LENGTH_MISMATCH) {
+        return NULL;
+    }
+  
+    PRTL_PROCESS_MODULES pSystemModules = (PRTL_PROCESS_MODULES) GlobalAlloc(GMEM_ZEROINIT, dwSize);
+    
+    if (!pSystemModules) {
+        return NULL;
+    }
+
+    if (!NT_SUCCESS(NtQuerySystemInformation(SystemModuleInformation, pSystemModules, dwSize, &dwSize))) {
+        GlobalFree(pSystemModules);
+        return NULL;
+    }
+
+    DWORD dwCount = pSystemModules->NumberOfModules;
+    
+    for (DWORD i = 0; i < dwCount; i++) {
+        if (strstr((char*) pSystemModules->Modules[i].FullPathName, imageName)) {
+            LPVOID pBase = (LPVOID) pSystemModules->Modules[i].ImageBase;
+            GlobalFree(pSystemModules);
+            return pBase;
+        }
+    }
+
+    GlobalFree(pSystemModules);
+    return NULL;
+}
