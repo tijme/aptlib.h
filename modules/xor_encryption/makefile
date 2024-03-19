@@ -3,11 +3,14 @@ COMPILER := x86_64-w64-mingw32-gcc
 INCLUDES := ./src/xor_encryption.c
 
 # Compile, test and clean
-all: program test
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
 	$(COMPILER) -masm=intel xor_encryption.o ./test.c -o test.exe
 
 # Test `test.exe`

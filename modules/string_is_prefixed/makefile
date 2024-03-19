@@ -3,11 +3,14 @@ COMPILER := x86_64-w64-mingw32-gcc
 INCLUDES := ./src/string_is_prefixed.c
 
 # Compile, test and clean
-all: program test
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_is_prefixed.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_is_prefixed.o
 	$(COMPILER) -masm=intel string_is_prefixed.o ./test.c -o test.exe
 
 # Test `test.exe`

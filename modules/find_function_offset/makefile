@@ -3,11 +3,14 @@ COMPILER := x86_64-w64-mingw32-gcc
 INCLUDES := ./src/find_function_offset.c
 
 # Compile, test and clean
-all: program test
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o find_function_offset.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o find_function_offset.o
 	$(COMPILER) -masm=intel find_function_offset.o ./test.c -o test.exe
 
 # Test `test.exe`

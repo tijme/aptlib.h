@@ -3,11 +3,14 @@ COMPILER := x86_64-w64-mingw32-gcc
 INCLUDES := ./src/string_contains.c
 
 # Compile, test and clean
-all: program test
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_contains.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_contains.o
 	$(COMPILER) -masm=intel string_contains.o ./test.c -o test.exe
 
 # Test `test.exe`

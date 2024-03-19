@@ -3,11 +3,14 @@ COMPILER := x86_64-w64-mingw32-gcc
 INCLUDES := ./src/get_image_base.c
 
 # Compile, test and clean
-all: program test
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) -masm=intel -c $(INCLUDES) -o get_image_base.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o get_image_base.o
 	$(COMPILER) -masm=intel get_image_base.o ./test.c -o test.exe -lntdll
 
 # Test `test.exe`
