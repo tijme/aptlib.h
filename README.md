@@ -16,7 +16,17 @@ Whilst developing exploits and malware, I often encountered code redundancy thro
 
 ## Usage
 
-ToDo
+Add this repository as submodule to your repository:
+
+    git submodule add git@github.com:tijme/aptlib.h.git vendor/aptlib
+
+Compile `aptlib.h` through your makefile:
+
+    ACTION=objects make -C vendor/aptlib
+
+Use the objects in your makefile:
+
+    gcc ./vendor/aptlib/modules/print_in_hex/print_in_hex.o ./test.c -o test.exe
 
 ## Issues
 

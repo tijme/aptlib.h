@@ -1,17 +1,17 @@
 # Defines
 COMPILER := x86_64-w64-mingw32-gcc
-INCLUDES := ./src/print_error.c
+INCLUDES := ./src/string_starts_with.c
 
 # Compile, test and clean
 all: objects program test
 
 # Compile object
 objects:
-	@$(COMPILER) -masm=intel -c $(INCLUDES) -o print_error.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o string_starts_with.o
 
 # Compile `test.c`
 program:
-	@$(COMPILER) -masm=intel print_error.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel string_starts_with.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:

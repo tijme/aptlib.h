@@ -7,15 +7,15 @@ all: objects program test
 
 # Compile object
 objects:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o find_process_id.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o find_process_id.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel find_process_id.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel find_process_id.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:
-	WINEDEBUG="fixme-all" wine ./test.exe
+	@WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:

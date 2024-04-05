@@ -1,8 +1,12 @@
 MODULES := $(wildcard ./modules/*)
 
-all: $(MODULES)
+
+all: welcome $(MODULES)
+
+welcome:
+	@echo "[+] Starting all compilation & testing tasks"
 
 $(MODULES):
-	make -C $@ $(ACTION)
+	@make -C $@ $(ACTION)
 
 .PHONY: all $(MODULES)

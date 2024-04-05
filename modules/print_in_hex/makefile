@@ -7,15 +7,15 @@ all: objects program test
 
 # Compile object
 objects:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o print_in_hex.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o print_in_hex.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel print_in_hex.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel print_in_hex.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:
-	WINEDEBUG="fixme-all" wine ./test.exe
+	@WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:

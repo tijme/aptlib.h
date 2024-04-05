@@ -45,31 +45,31 @@
 #include <stdbool.h>
 
 /**
- * Check if the given prefix is indeed a prefix in the given string (case sensitive).
+ * Check if the given affix indeed ends with in the given string (case sensitive).
  * 
- * @param char* string The string to check the prefix for.
- * @param char* possiblePrefix The prefix to search for.
+ * @param char* string The string to check the affix for.
+ * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @param bool Positive if the string is affixed with the possible affix.
  */
-bool stringIsPrefixedCS(char* string, char* possiblePrefix);
+bool stringEndsWithCS(char* string, char* possibleAffix);
 
 /**
- * Check if the given prefix is indeed a prefix in the given string (case insensitive).
+ * Check if the given affix is indeed a affix in the given string (case insensitive).
  * 
- * @param char* string The string to check the prefix for.
- * @param char* possiblePrefix The prefix to search for.
+ * @param char* string The string to check the affix for.
+ * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @param bool Positive if the string is affixed with the possible affix.
  */
-bool stringIsPrefixedCI(char* string, char* possiblePrefix);
+bool stringEndsWithCI(char* string, char* possibleAffix);
 
 /**
- * Check if the given prefix is indeed a prefix in the given string.
+ * Check if the given affix is indeed a affix in the given string.
  * 
- * @param char* string The string to check the prefix for.
- * @param char* possiblePrefix The prefix to search for.
+ * @param char* string The string to check the affix for.
+ * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @param bool Positive if the string is affixed with the possible affix.
  */
-bool stringIsPrefixed(char* string, char* possiblePrefix, bool caseSensitive);
+bool stringEndsWith(char* string, char* possibleAffix, bool caseSensitive);

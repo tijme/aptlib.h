@@ -1,21 +1,21 @@
 # Defines
 COMPILER := x86_64-w64-mingw32-gcc
-INCLUDES := ./src/string_is_prefixed.c
+INCLUDES := ./src/directory_exists.c
 
 # Compile, test and clean
 all: objects program test
 
 # Compile object
 objects:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_is_prefixed.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o directory_exists.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel string_is_prefixed.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel directory_exists.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:
-	WINEDEBUG="fixme-all" wine ./test.exe
+	@WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:

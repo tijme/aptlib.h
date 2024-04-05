@@ -7,15 +7,15 @@ all: objects program test
 
 # Compile object
 objects:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel xor_encryption.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel xor_encryption.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:
-	WINEDEBUG="fixme-all" wine ./test.exe
+	@WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:

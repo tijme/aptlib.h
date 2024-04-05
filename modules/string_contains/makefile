@@ -7,15 +7,15 @@ all: objects program test
 
 # Compile object
 objects:
-	$(COMPILER) -masm=intel -c $(INCLUDES) -o string_contains.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o string_contains.o
 
 # Compile `test.c`
 program:
-	$(COMPILER) -masm=intel string_contains.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel string_contains.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:
-	WINEDEBUG="fixme-all" wine ./test.exe
+	@WINEDEBUG="fixme-all" wine ./test.exe
 
 # Clean all build files
 clean:
