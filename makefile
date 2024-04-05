@@ -1,6 +1,5 @@
 MODULES := $(wildcard ./modules/*)
 
-
 all: welcome $(MODULES)
 
 welcome:
