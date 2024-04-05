@@ -53,7 +53,7 @@
  * @param char* string The string to check the prefix for.
  * @param char* possiblePrefix The prefix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @return bool Positive if the string is prefixed with the possible prefix.
  */
 bool stringStartsWithCS(char* string, char* possiblePrefix) {
     return strncmp(possiblePrefix, string, strlen(possiblePrefix)) == 0;
@@ -65,7 +65,7 @@ bool stringStartsWithCS(char* string, char* possiblePrefix) {
  * @param char* string The string to check the prefix for.
  * @param char* possiblePrefix The prefix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @return bool Positive if the string is prefixed with the possible prefix.
  */
 bool stringStartsWithCI(char* string, char* possiblePrefix) {
     return strncasecmp(possiblePrefix, string, strlen(possiblePrefix)) == 0;
@@ -77,7 +77,7 @@ bool stringStartsWithCI(char* string, char* possiblePrefix) {
  * @param char* string The string to check the prefix for.
  * @param char* possiblePrefix The prefix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is prefixed with the possible prefix.
+ * @return bool Positive if the string is prefixed with the possible prefix.
  */
 bool stringStartsWith(char* string, char* possiblePrefix, bool caseSensitive) {
     return caseSensitive ? stringStartsWithCS(string, possiblePrefix) : stringStartsWithCI(string, possiblePrefix);

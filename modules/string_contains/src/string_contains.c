@@ -60,7 +60,7 @@
  * 
  * @param char* haystack The haystack to search in.
  * @param char* needle The needle to search for.
- * @param bool Positive if the needle was found in the haystack.
+ * @return bool Positive if the needle was found in the haystack.
  */
 bool stringContainsCS(char* haystack, char* needle) {
     return strstr(haystack, needle) != NULL;
@@ -71,7 +71,7 @@ bool stringContainsCS(char* haystack, char* needle) {
  * 
  * @param char* haystack The haystack to search in.
  * @param char* needle The needle to search for.
- * @param bool Positive if the needle was found in the haystack.
+ * @return bool Positive if the needle was found in the haystack.
  */
 bool stringContainsCI(char* haystack, char* needle) {
     const char* p1 = haystack;
@@ -111,7 +111,7 @@ bool stringContainsCI(char* haystack, char* needle) {
  * @param char* haystack The haystack to search in.
  * @param char* needle The needle to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the needle was found in the haystack.
+ * @return bool Positive if the needle was found in the haystack.
  */
 bool stringContains(char* haystack, char* needle, bool caseSensitive) {
     return caseSensitive ? stringContainsCS(haystack, needle) : stringContainsCI(haystack, needle);

@@ -61,7 +61,7 @@
  * Check if the given filename exists.
  * 
  * @param char* lpFileName The given file (path) to check.
- * @param bool Positive if the file exists on disk.
+ * @return bool Positive if the file exists on disk.
  */
 bool fileExists(char* lpFileName) {
     DWORD fileSystemAttributes = GetFileAttributes(lpFileName);

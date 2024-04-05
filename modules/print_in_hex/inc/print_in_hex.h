@@ -49,6 +49,6 @@
  * 
  * @param char* value An array of chars to print in HEX.
  * @param size_t length The amount of bytes/chars to print.
- * @param bool reverse Reverse the output (e.g. for a pointer).
+ * @return bool reverse Reverse the output (e.g. for a pointer).
  */
 void printInHex(char* lpBuffer, size_t lpNumberOfBytesRead, bool reverse);

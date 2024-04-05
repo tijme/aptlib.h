@@ -61,7 +61,7 @@
  * Check if the given filename exists.
  * 
  * @param char* lpDirectoryName The given directory (path) to check.
- * @param bool Positive if the directory exists on disk.
+ * @return bool Positive if the directory exists on disk.
  */
 bool directoryExists(char* lpDirectoryName) {
     DWORD fileSystemAttributes = GetFileAttributes(lpDirectoryName);

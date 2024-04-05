@@ -60,7 +60,7 @@
  * @param DWORD errorCode The error code to convert.
  * @param char* The human-readable output buffer.
  * @param DWORD The size of the output buffer.
- * @returns DWORD The amount of bytes actually written.
+ * @return DWORD The amount of bytes actually written.
  */
 DWORD GetMessageFromError(DWORD errorCode, char* lpBuffer, DWORD size);
 
@@ -69,7 +69,7 @@ DWORD GetMessageFromError(DWORD errorCode, char* lpBuffer, DWORD size);
  * 
  * @param char* The human-readable output buffer.
  * @param DWORD The size of the output buffer.
- * @returns DWORD The amount of bytes actually written.
+ * @return DWORD The amount of bytes actually written.
  */
 DWORD GetMessageFromLastError(char* lpBuffer, DWORD size);
 

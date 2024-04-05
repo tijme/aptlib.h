@@ -53,7 +53,7 @@
  * @param char* string The string to check the affix for.
  * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is affixed with the possible affix.
+ * @return bool Positive if the string is affixed with the possible affix.
  */
 bool stringEndsWithCS(char* string, char* possibleAffix) {
     size_t stringLength = strlen(string);
@@ -71,7 +71,7 @@ bool stringEndsWithCS(char* string, char* possibleAffix) {
  * @param char* string The string to check the affix for.
  * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is affixed with the possible affix.
+ * @return bool Positive if the string is affixed with the possible affix.
  */
 bool stringEndsWithCI(char* string, char* possibleAffix) {
     size_t stringLength = strlen(string);
@@ -89,7 +89,7 @@ bool stringEndsWithCI(char* string, char* possibleAffix) {
  * @param char* string The string to check the affix for.
  * @param char* possibleAffix The affix to search for.
  * @param bool caseSensitive If a case sensitive check should be performed.
- * @param bool Positive if the string is affixed with the possible affix.
+ * @return bool Positive if the string is affixed with the possible affix.
  */
 bool stringEndsWith(char* string, char* possibleAffix, bool caseSensitive) {
     return caseSensitive ? stringEndsWithCS(string, possibleAffix) : stringEndsWithCI(string, possibleAffix);
