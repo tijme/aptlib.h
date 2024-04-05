@@ -1,15 +1,16 @@
-name: Compile
+name: Compile & test using `nmake`
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - name: make
-      run: ACTION=objects make
+    - uses: ilammy/msvc-dev-cmd@v1.13.0
+    - name: nmake
+      run: nmake -f .\makefile.msvc

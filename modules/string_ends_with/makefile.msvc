@@ -1,0 +1,22 @@
+# Defines
+COMPILER = cl.exe
+INCLUDES = .\src\string_ends_with.c
+
+# Compile, test and clean
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) /LD -c $(INCLUDES) /Fo:string_ends_with.obj
+
+# Compile `test.c`
+program:
+	$(COMPILER) .\test.c .\string_ends_with.obj /Fe:test.exe
+
+# Test `test.exe`
+test:
+	.\test.exe
+
+# Clean all build files
+clean:
+	del /Q *.exe *.a *.o *.obj *.lib *.dll *.pdb

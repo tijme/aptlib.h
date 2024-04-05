@@ -1,0 +1,13 @@
+all:
+        @echo "[+] Starting all compilation & testing tasks"
+        cd ./modules/directory_exists & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/file_exists & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/find_function_offset & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/find_process_id & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/get_image_base & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/print_error & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/print_in_hex & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/string_contains & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/string_ends_with & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/string_starts_with & nmake -f makefile.msvc $(ACTION)
+        cd ./modules/xor_encryption & nmake -f makefile.msvc $(ACTION)

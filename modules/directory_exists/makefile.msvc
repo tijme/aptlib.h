@@ -1,0 +1,22 @@
+# Defines
+COMPILER = cl.exe
+INCLUDES = .\src\directory_exists.c
+
+# Compile, test and clean
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) /LD -c $(INCLUDES) /Fo:directory_exists.obj
+
+# Compile `test.c`
+program:
+	$(COMPILER) .\test.c .\directory_exists.obj /Fe:test.exe
+
+# Test `test.exe`
+test:
+	.\test.exe
+
+# Clean all build files
+clean:
+	del /Q *.exe *.a *.o *.obj *.lib *.dll *.pdb

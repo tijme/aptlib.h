@@ -1,0 +1,22 @@
+# Defines
+COMPILER = cl.exe
+INCLUDES = .\src\print_error.c
+
+# Compile, test and clean
+all: objects program test
+
+# Compile object
+objects:
+	$(COMPILER) /LD -c $(INCLUDES) /Fo:print_error.obj
+
+# Compile `test.c`
+program:
+	$(COMPILER) .\test.c .\print_error.obj /Fe:test.exe
+
+# Test `test.exe`
+test:
+	.\test.exe
+
+# Clean all build files
+clean:
+	del /Q *.exe *.a *.o *.obj *.lib *.dll *.pdb

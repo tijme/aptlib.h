@@ -77,12 +77,12 @@ int main(int argc, char** argv, char **envp) {
 
     printf("[+] Password (%zu): %s\n", passwc, passwv);
 
-    char* cipherv = xorcrypt(plainv, plainc, passwv, passwc, "Encrypt");
+    char* cipherv = xorcrypt(plainv, plainc, passwv, passwc);
     size_t cipherc = plainc;
 
     printf("[+] Cipher (%zu): [non-ascii]\n", plainc);
 
-    char* decryptv = xorcrypt(cipherv, plainc, passwv, passwc, "Decrypt");
+    char* decryptv = xorcrypt(cipherv, plainc, passwv, passwc);
     size_t decryptc = strlen(decryptv);
 
     printf("[+] Decrypted (%zu): %s\n", decryptc, decryptv);

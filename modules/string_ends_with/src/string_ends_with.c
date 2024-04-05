@@ -80,7 +80,11 @@ bool stringEndsWithCI(char* string, char* possibleAffix) {
     if (affixLength >  stringLength)
         return 0;
 
+#if defined(_WIN32) || defined(_WIN64)
+    return stricmp(string + stringLength - affixLength, possibleAffix, affixLength) == 0;
+#else:
     return strncasecmp(string + stringLength - affixLength, possibleAffix, affixLength) == 0;
+#endif
 }
 
 /**
