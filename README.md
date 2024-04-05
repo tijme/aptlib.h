@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/tijme/aptlib.h/master/.github/logo.png" width="600"/>
+    <img src="https://raw.githubusercontent.com/tijme/aptlib.h/master/.github/logo.png" />
 </p>
 <p align="center">
     <a href="https://github.com/tijme/aptlib.h/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/Source-Licensed-da0024?style=for-the-badge" /></a>
