@@ -38,10 +38,11 @@
 
 /** 
  * Run bitwise XOR on text using password.
- *  * 
+ *
  * @param char* plainv The plaintext value.
+ * @param size_t plainc The length of the plaintext value.
  * @param char* passwv The passord value.
- * @param int length The length of the plaintext and password (must be equal).
+ * @param size_t passwc The length of the password value.
  * @return char* The XOR'd result including a null byte.
  */
-char* xorcrypt(char* plainv, size_t plainc, char* passwv, size_t passwc, char* title);
+char* xorcrypt(char* plainv, size_t plainc, char* passwv, size_t passwc);
