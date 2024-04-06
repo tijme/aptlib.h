@@ -14,6 +14,12 @@
 
 Whilst developing exploits and malware, I often encountered code redundancy throughout my projects. This led to the creation of `aptlib.h`, as a response to the recurring need for functionalities like retrieving user information, querying processes, managing static offsets, and more. `aptlib.h` is a high cohesion & low coupling c-code library that can be easily integrated in any c-code project through a Git submodule. Whether you're delving into malware development, crafting exploits, or pursuing other endeavors; it helps you stay one step ahead of APT's.
 
+## Testing
+
+Run `nmake` as follows:
+
+    nmake /A /f makefile.msvc
+
 ## Usage
 
 Add this repository as submodule to your repository:
