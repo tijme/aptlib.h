@@ -19,9 +19,12 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.13.0
       - name: Compile
         run: nmake /A /f makefile.msvc
+      - name: Get short SHA
+        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+
       - name: Release 
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ github.ref }}
+          name: Release ${{ env.SHORT_SHA }}
           files: ./modules/*/*.obj
-          tag_name: ${{ github.ref }}
+          tag_name: tag-${{ env.SHORT_SHA }}
