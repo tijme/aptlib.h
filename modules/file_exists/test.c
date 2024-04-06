@@ -71,10 +71,12 @@ int main(int argc, char** argv, char **envp) {
         puts("[+] CHECK1: Succesfully completed.");
     } else {
         puts("[!] CHECK1: Failed to perform 'file exists' operation.");
+        return 1;
     }
 
     if (fileExists("C:\\Windows\\System32\\notepad-non-existent.exe")) {
         puts("[!] CHECK2: Failed to perform 'file exists' operation.");
+        return 1;
     } else {
         puts("[+] CHECK2: Succesfully completed.");
     }

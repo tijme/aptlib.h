@@ -77,11 +77,13 @@ int main(int argc, char** argv, char **envp) {
         puts("[+] CHECK1: Succesfully completed.");
     } else {
         puts("[!] CHECK1: Failed to perform 'string starts with' operation.");
+        return 1;
     }
 
     // Case sensitive; not prefixed
     if (stringEndsWith(string, notTheAffix, true)) {
         puts("[!] CHECK2: Failed to perform 'string starts with' operation.");
+        return 1;
     } else {
         puts("[+] CHECK2: Succesfully completed.");
     }
@@ -89,6 +91,7 @@ int main(int argc, char** argv, char **envp) {
     // Case sensitive; case sensitive prefixed
     if (stringEndsWith(string, theAffixLower, true)) {
         puts("[!] CHECK3: Failed to perform 'string starts with' operation.");
+        return 1;
     } else {
         puts("[+] CHECK3: Succesfully completed.");
     }
@@ -98,11 +101,13 @@ int main(int argc, char** argv, char **envp) {
         puts("[+] CHECK4: Succesfully completed.");
     } else {
         puts("[!] CHECK4: Failed to perform 'string starts with' operation.");
+        return 1;
     }
 
     // Case insensitive; not prefixed
     if (stringEndsWith(string, notTheAffix, false)) {
         puts("[!] CHECK5: Failed to perform 'string starts with' operation.");
+        return 1;
     } else {
         puts("[+] CHECK5: Succesfully completed.");
     }

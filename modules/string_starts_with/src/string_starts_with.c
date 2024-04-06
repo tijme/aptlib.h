@@ -68,9 +68,9 @@ bool stringStartsWithCS(char* string, char* possiblePrefix) {
  * @return bool Positive if the string is prefixed with the possible prefix.
  */
 bool stringStartsWithCI(char* string, char* possiblePrefix) {
-#if defined(_WIN32) || defined(_WIN64)
+#if defined(_MSC_BUILD) || defined(_MSC_BUILD)
     return strnicmp(possiblePrefix, string, strlen(possiblePrefix)) == 0;
-#else:
+#else
     return strncasecmp(possiblePrefix, string, strlen(possiblePrefix)) == 0;
 #endif
 }

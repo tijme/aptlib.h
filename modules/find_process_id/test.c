@@ -65,12 +65,18 @@ int main(int argc, char** argv, char **envp) {
         puts("[+] CHECK1: Succesfully completed.");
     } else {
         puts("[!] CHECK1: Failed to perform 'find_process_id' operation.");
+#if defined(_MSC_BUILD) || defined(_MSC_BUILD)
+        return 1;
+#endif
     }
 
     if (pid == 4) {
         puts("[+] CHECK2: Succesfully completed.");
     } else {
         puts("[!] CHECK2: Failed to perform 'find_process_id' operation.");
+#if defined(_MSC_BUILD) || defined(_MSC_BUILD)
+        return 1;
+#endif
     }
 
     puts("[+] Finished checks for module `find_process_id`.");

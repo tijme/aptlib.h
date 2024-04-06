@@ -1,17 +1,17 @@
 # Defines
 COMPILER := x86_64-w64-mingw32-gcc
-INCLUDES := ./src/xor_encryption.c
+INCLUDES := ./src/print_in_hex.c
 
 # Compile, test and clean
 all: objects program test
 
 # Compile object
 objects:
-	@$(COMPILER) -masm=intel -c $(INCLUDES) -o xor_encryption.o
+	@$(COMPILER) -masm=intel -c $(INCLUDES) -o print_in_hex.o
 
 # Compile `test.c`
 program:
-	@$(COMPILER) -masm=intel xor_encryption.o ./test.c -o test.exe
+	@$(COMPILER) -masm=intel print_in_hex.o ./test.c -o test.exe
 
 # Test `test.exe`
 test:

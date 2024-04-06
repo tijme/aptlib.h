@@ -71,10 +71,12 @@ int main(int argc, char** argv, char **envp) {
         puts("[+] CHECK1: Succesfully completed.");
     } else {
         puts("[!] CHECK1: Failed to perform 'directory exists' operation.");
+        return 1;
     }
 
     if (directoryExists("C:\\Windows\\System33")) {
         puts("[!] CHECK2: Failed to perform 'directory exists' operation.");
+        return 1;
     } else {
         puts("[+] CHECK2: Succesfully completed.");
     }
