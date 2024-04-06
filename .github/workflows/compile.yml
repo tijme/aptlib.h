@@ -17,10 +17,6 @@ jobs:
         id: date
         run: |
           echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
-      - name: Get short SHA hash
-        id: hash
-        run: |
-          echo "{hash}={$(git rev-parse --short HEAD)}" >> $GITHUB_STATE
       - name: Checkout
         uses: actions/checkout@v3
       - name: Dependencies
@@ -30,6 +26,6 @@ jobs:
       - name: Release 
         uses: softprops/action-gh-release@v2
         with:
-          name: Release ${{ env.date }}-${{ env.hash }}
+          name: Release ${{ env.date }}-${{ github.head_ref }}.${{ github.sha }}
           files: ./modules/*/*.obj
-          tag_name: ${{ env.date }}-${{ env.hash }}
+          tag_name: ${{ env.date }}-${{ github.head_ref }}.${{ github.sha }}
