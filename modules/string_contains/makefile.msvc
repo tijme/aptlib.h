@@ -12,6 +12,7 @@ objects:
 # Compile `test.c`
 program:
 	$(COMPILER) .\test.c .\string_contains.obj /Fe:test.exe
+	del test.obj
 
 # Test `test.exe`
 test:

@@ -12,6 +12,7 @@ objects:
 # Compile `test.c`
 program:
 	$(COMPILER) .\test.c .\get_image_base.obj /Fe:test.exe ntdll.lib
+	del test.obj
 
 # Test `test.exe`
 test:
