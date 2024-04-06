@@ -18,7 +18,7 @@ jobs:
       run: nmake /A /f makefile.msvc
     - name: Release
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
+      name: Release ${{ github.sha }}
       with:
         files: |
           modules/*/*.obj
