@@ -1,5 +1,8 @@
 name: Compile & test using `nmake`, then publish
 
+permissions:
+  contents: write
+  
 on:
   push:
     branches: ["master"]
