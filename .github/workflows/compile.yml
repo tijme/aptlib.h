@@ -16,8 +16,9 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1.13.0
     - name: Compile
       run: nmake /A /f makefile.msvc
-    - name: Release ${{ github.sha }}
+    - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        files: |
-          modules/*/*.obj
+        name: Release ${{ github.sha }}
+        files: ./modules/*/*.obj
+        tag_name: release-${{ github.sha }}
