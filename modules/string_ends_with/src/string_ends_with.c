@@ -79,7 +79,6 @@ bool stringEndsWithCI(char* string, char* possibleAffix) {
 
     if (affixLength >  stringLength)
         return 0;
-    return strncasecmp(string + stringLength - affixLength, possibleAffix, affixLength) == 0;
 
 #if defined(_MSC_BUILD) || defined(_MSC_BUILD)
     return stricmp(string + stringLength - affixLength, possibleAffix, affixLength) == 0;
