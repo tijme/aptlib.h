@@ -2,7 +2,7 @@ name: Compile & test using `nmake`, then publish
 
 permissions:
   contents: write
-  
+
 on:
   push:
     branches: ["master"]
@@ -13,15 +13,21 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Dependencies
-      uses: ilammy/msvc-dev-cmd@v1.13.0
-    - name: Compile
-      run: nmake /A /f makefile.msvc
-    - name: Release
-      uses: softprops/action-gh-release@v2
-      with:
-        name: Release ${{ github.sha }}
-        files: ./modules/*/*.obj
-        tag_name: release-${{ github.sha }}
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Dependencies
+        uses: ilammy/msvc-dev-cmd@v1.13.0
+      - name: Compile
+        run: nmake /A /f makefile.msvc
+      - name: Release 
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ steps.date.outputs.date }}-${{ steps.vars.outputs.sha_short }}
+          files: ./modules/*/*.obj
+          tag_name: ${{ steps.date.outputs.date }}-${{ steps.vars.outputs.sha_short }}
